@@ -19,3 +19,4 @@ converter.convert()
 
 logger.success('Conversion complete!')
 logger.info('See your converted mod in output/')
+logger.info('Make sure you install SpaceCore!')
