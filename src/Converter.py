@@ -44,15 +44,18 @@ class Converter:
                             } if img != None else change['ToArea'],
                             'SourceTexture': f"{self.internaliseAsset(change['FromFile'])}:0..{change['AnimationFrameCount'] - 1}@{change['AnimationFrameTime']}"
                                 # "ToArea": { "X": 32, "Y": 48, "Width": 16, "Height": 16 }
-
-                            
                         }
                     }
                 }
+                if 'When' in change: new['When'] = change['When']
+                if 'Update' in change: new['Update'] = change['Update']
                 self.outcontent['Changes'].append(new)
             else:
                 self.outcontent['Changes'].append(change)
 
+
+        if 'ConfigSchema' in self.incontent: self.outcontent['ConfigSchema'] = self.incontent['ConfigSchema']
+        if 'DynamicTokens' in self.incontent: self.outcontent['DynamicTokens'] = self.incontent['DynamicTokens']
 
 
         self.translateManifest()
