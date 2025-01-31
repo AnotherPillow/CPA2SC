@@ -27,7 +27,7 @@ class Converter:
         for change in self.incontent['Changes']:
             img = None
             if change['Action'] == 'Load':
-                img = Image.load(change['FromFile'])
+                img: Image.Image = Image.open(change['FromFile'])
             if 'AnimationFrameTime' in change and 'AnimationFrameCount' in change:
                 new = {
                     'LogName': f'Add animation for {change["Target"]}' if 'LogName' not in change else change['LogName'],
