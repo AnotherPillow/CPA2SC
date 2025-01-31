@@ -29,6 +29,9 @@ class Converter:
             if change['Action'] == 'Load':
                 img: Image.Image = Image.open(change['FromFile'])
             if 'AnimationFrameTime' in change and 'AnimationFrameCount' in change:
+                if '{{' in change['FromFile'] or '{{' in change['Target']:
+                    logger.error(f'Cannot parse tokens in change targeting {change["Target"]}. Skipping')
+                    continue
                 new = {
                     'LogName': f'Add animation for {change["Target"]}' if 'LogName' not in change else change['LogName'],
                     'Action': 'EditData',
