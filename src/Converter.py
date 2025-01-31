@@ -25,10 +25,9 @@ class Converter:
 
     def convert(self):
         for change in self.incontent['Changes']:
-            img = None
-            if change['Action'] == 'Load':
-                img: Image.Image = Image.open(change['FromFile'])
             if 'AnimationFrameTime' in change and 'AnimationFrameCount' in change:
+                if change['Action'] == 'Load':
+                    img: Image.Image = Image.open(change['FromFile'])
                 if '{{' in change['FromFile'] or '{{' in change['Target']:
                     logger.error(f'Cannot parse tokens in change targeting {change["Target"]}. Skipping')
                     continue
