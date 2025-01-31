@@ -1,4 +1,4 @@
-import json5, shutil, os, json
+import json5, shutil, os, json, hashlib
 from PIL import Image
 
 from .Logger import logger
@@ -34,7 +34,7 @@ class Converter:
                     'Action': 'EditData',
                     'Target': 'spacechase0.SpaceCore/TextureOverrides',
                     'Entries': {
-                        self.manifest['UniqueID'] + '_' + change['Target'] + '/' + change['LogName'].replace(' ' , ''): {
+                        self.manifest['UniqueID'] + '_' + change['Target'] + '_' + hashlib.md5(change['LogName']).hexdigest(): {
                             'TargetTexture': change['Target'],
                             'TargetRect': {
                                 "X": 0,
