@@ -36,7 +36,7 @@ class Converter:
                     'Action': 'EditData',
                     'Target': 'spacechase0.SpaceCore/TextureOverrides',
                     'Entries': {
-                        self.manifest['UniqueID'] + '_' + change['Target'] + '_' + hashlib.md5(change['LogName']).hexdigest(): {
+                        self.manifest['UniqueID'] + '_' + change['Target'] + '_' + hashlib.md5(change['LogName'].encode('utf-8')).hexdigest(): {
                             'TargetTexture': change['Target'],
                             'TargetRect': {
                                 "X": 0,
